@@ -1,0 +1,89 @@
+<div class="card">
+  <div class="card-info">
+    <h2>{{ task.title }}</h2>
+    <p>{{ task.description }}</p>
+  </div>
+  <button
+    class="button-sm delete-button"
+    (click)="abrirModalEliminar(task._id)"
+  >
+    <span class="material-symbols-rounded mat-icon-custom-color">delete</span>
+  </button>
+  <button class="button-sm edit-button" (click)="abrirModalEditar(task._id)">
+    <span class="material-symbols-rounded mat-icon-custom-color">edit</span>
+  </button>
+  <button class="button" aria-hidden="true" (click)="completeTask(task._id)">
+    Completada
+  </button>
+</div>
+
+<!-- modal editar tarea -->
+<div id="modalEditarTarea" class="modal">
+  <div class="modal-content">
+    <h2>Editar Tarea</h2>
+    <div class="form">
+      <form
+        id="formEditarTarea"
+        [formGroup]="formUpdateTask"
+        (ngSubmit)="updateTask(task._id)"
+      >
+        <div class="inputBox">
+          <h4>Titulo de la tarea</h4>
+          <input
+            formControlName="title"
+            type="text"
+            placeholder="Titulo"
+            id="titleTaskUpdate"
+            name="title"
+          />
+        </div>
+        <div class="inputBox">
+          <h4>Descripcion de la tarea</h4>
+          <input
+            type="text"
+            formControlName="description"
+            placeholder="Descripcion"
+            id="descriptionTaskUpdate"
+            name="description"
+          />
+        </div>
+
+        <div class="inputBox buttons">
+          <button
+            class="buttonCerrar"
+            aria-hidden="true"
+            (click)="cerrarModalEditar($event)"
+          >
+            Cancelar
+          </button>
+          <input type="submit" value="Actualizar" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- modal eliminar tarea -->
+<div id="modalEliminarTarea" class="modal-sm">
+  <div class="modal-content-sm">
+    <h2>Eliminar Tarea</h2>
+    <p>¿Estas seguro de eliminar esta tarea?</p>
+
+    <div class="inputBox buttons">
+      <button
+        class="buttonCerrar"
+        aria-hidden="true"
+        (click)="cerrarModalEliminar()"
+      >
+        Cancelar
+      </button>
+      <button
+        class="button-delete"
+        aria-hidden="true"
+        (click)="eliminarTarea(task._id)"
+      >
+        Eliminar
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="card-info">
+    <h2>{{ task.title }}</h2>
+    <p>{{ task.description }}</p>
+  </div>
+  <button
+    class="button-sm delete-button"
+    (click)="abrirModalEliminar(task._id)"
+  >
+    <span class="material-symbols-rounded mat-icon-custom-color">delete</span>
+  </button>
+  <button
+    class="button completed"
+    aria-hidden="true"
+    (click)="completeTask(task._id)"
+    disabled
+  >
+    Completada
+  </button>
+</div>
+
+<!-- modal eliminar tarea -->
+<div id="modalEliminarTarea" class="modal-sm">
+  <div class="modal-content-sm">
+    <h2>Eliminar Tarea</h2>
+    <p>¿Estas seguro de eliminar esta tarea?</p>
+
+    <div class="inputBox buttons">
+      <button
+        class="buttonCerrar"
+        aria-hidden="true"
+        (click)="cerrarModalEliminar()"
+      >
+        Cancelar
+      </button>
+      <button
+        class="button-delete"
+        aria-hidden="true"
+        (click)="eliminarTarea(task._id)"
+      >
+        Eliminar
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,462 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mat-icon-custom-color {
+    color: #658ec6;
+    font-size: 30px;
+    align-self: center;
+}
+
+h1 {
+    color: #426696;
+    font-weight: 600;
+    font-size: 3rem;
+    opacity: 0.8;
+}
+
+h2,
+p {
+    color: #658ec6;
+    font-weight: 500;
+    opacity: 0.8;
+    margin: 0;
+}
+
+h3 {
+    color: #426696;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+main {
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(to right top, #65dfc9, #6cdbeb);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+}
+
+.glass {
+    margin: 50px;
+    background: white;
+    min-height: 80vh;
+    width: 80%;
+    background: linear-gradient(to right bottom,
+            rgba(255, 255, 255, 0.7),
+            rgba(255, 255, 255, 0.3));
+    border-radius: 2rem;
+    z-index: 2;
+    backdrop-filter: blur(2rem);
+    display: flex;
+}
+
+.circle1,
+.circle2 {
+    background: white;
+    background: linear-gradient(to right bottom,
+            rgba(255, 255, 255, 0.8),
+            rgba(255, 255, 255, 0.3));
+    height: 20rem;
+    width: 20rem;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.circle1 {
+    top: 5%;
+    right: 15%;
+}
+
+.circle2 {
+    bottom: 5%;
+    left: 10%;
+}
+
+/* ================== BARRA LATERAL ======================== */
+.dashboard {
+    flex: 1;
+    display: flex;
+    max-width: 40vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: start;
+    background: linear-gradient(to right bottom,
+            rgba(255, 255, 255, 0.7),
+            rgba(255, 255, 255, 0.3));
+    border-radius: 2rem;
+    padding: 0 1rem;
+}
+
+.user {
+    display: flex;
+        /* Utiliza un contenedor flexible */
+        flex-direction: column;
+        /* Alinea los elementos en columna (verticalmente) */
+        align-items: center;
+        /* Centra horizontalmente */
+        justify-content: center;
+        /* Centra verticalmente */
+        margin-top: 10%;
+}
+
+.user img {
+    
+    height: 10rem;
+    margin-bottom: 20px;
+}
+
+.link {
+    display: flex;
+    background: linear-gradient(to right bottom,
+            rgba(255, 255, 255, 0.7),
+            rgba(255, 255, 255, 0.3));
+    border-radius: 1rem;
+    margin: 2rem 0rem;
+    padding: 0.7rem 1rem;
+    align-items: center;
+}
+
+.link.logout {
+    display: flex;
+    justify-self: flex-end;
+    background: transparent;
+    align-self: flex-end;
+    margin-top: 7rem;
+    margin-bottom: 0.5rem;
+
+}
+
+.link:hover {
+    background: linear-gradient(to right top, #acf6e8, #b4f2fb);
+}
+
+.active {
+    background: linear-gradient(to right top, #acf6e8, #b4f2fb);
+    color: white;
+}
+
+.active:hover {
+    background: linear-gradient(to right top, #9df6e7, #9decf9);
+    color: white;
+}
+
+.link h2 {
+    padding: 0rem 1rem;
+}
+
+.theme {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+/* ============= TITULO DE TAREAS PENDIENTES =================== */
+.status {
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.status .line {
+    background: linear-gradient(to right bottom,
+            rgba(255, 255, 255, 0.7),
+            rgba(255, 255, 255, 0.3));
+    border: none;
+    width: 70%;
+    padding: 0.5rem;
+    border-radius: 2rem;
+}
+
+/* ============== BUTTON AGREGAR */
+.status button {
+    position: relative;
+    /* Añadido para que el pseudo-elemento sea relativo a este botón */
+    background: linear-gradient(to right top, #65dfc9, #6cdbeb);
+    border: none;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    color: white;
+    font-size: medium;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    align-self: flex-end;
+    min-width: fit-content;
+    min-height: 3rem;
+    margin-left: auto;
+margin-right: 1.5rem;
+    /* Alinear el botón a la derecha usando margin-left: auto */
+
+}
+
+.status button:hover {
+    transform: scale(1.1);
+}
+
+.status button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 200px;
+    /* Ajusta según sea necesario para cubrir el área deseada */
+    width: 20px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: skewX(45deg);
+    transition: 0.5s;
+}
+
+.status button:hover::before {
+    left: -80%;
+    /* Cambiado para mover el pseudo-elemento fuera del botón en el estado normal */
+}
+
+.title-and-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Agrega espacio entre los elementos */
+    width: 100%;
+}
+
+/* ============= CONTENIDO =================== */
+.games {
+    margin: 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+    
+}
+
+.cards {
+    max-height: 500px;
+        /* Ajusta la altura según tus necesidades */
+        overflow-y: auto;
+        padding-right: 1rem;
+}
+
+/* ============== MODAL CREAR ================== */
+
+.title-and-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Agrega espacio entre los elementos */
+    width: 100%;
+}
+
+
+.modal {
+    display: none;
+    /* Oculta el modal por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 2rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Fondo oscuro semitransparente */
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 1rem;
+    width: 60%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    float: right;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #f00;
+}
+
+/* ============== FORMULARIO ================== */
+
+.form {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+
+}
+
+.form h4 {
+    position: relative;
+    color: #426696;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+
+.form h4::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 80px;
+    height: 4px;
+    background: #fff;
+}
+
+.form .inputBox.buttons {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    /* Agrega espacio entre los elementos */
+}
+
+.form .inputBox.text {
+    width: 100%;
+    margin-top: 20px;
+    flex-direction: column;
+}
+
+.form .inputBox input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    border-radius: 35px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #426696;
+    box-shadow: 0 5px 15px #65dfc945;
+}
+
+.form .inputBox input::placeholder {
+    color: #42669696;
+}
+
+.form .inputBox input[type="submit"] {
+    background: linear-gradient(to right top, #65dfc9, #6cdbeb);
+    border: none;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    color: white;
+    font-size: medium;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    align-self: flex-end;
+    min-width: fit-content;
+    max-width: 5rem;
+    min-height: 3rem;
+    margin-top: 1rem;
+    margin-left: 0.5rem;
+}
+
+.form .inputBox input[type="submit"]:hover {
+    transform: scale(1.1);
+}
+
+.form .inputBox input[type="submit"]::before {
+    content: '';
+    position: relative;
+    top: 0;
+    left: 20%;
+    /* Ajustado para centrar el pseudo-elemento horizontalmente en el botón */
+    width: 20px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: skewX(45deg) translateX(-50%);
+    /* Ajustado para centrar el pseudo-elemento en el botón */
+    transition: 0.5s;
+}
+
+.form .inputBox input[type="submit"]:hover::before {
+    left: -80%;
+    /* Ajustado para mover el pseudo-elemento fuera del botón en el estado normal */
+}
+
+/* button cerrar */
+.form .inputBox button {
+    position: relative;
+    /* Añadido para que el pseudo-elemento sea relativo a este botón */
+    background: linear-gradient(to right top, #a4e1d6, #b3eaf3);
+    border: none;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    color: white;
+    font-size: medium;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    align-self: flex-end;
+    min-width: fit-content;
+    min-height: 3rem;
+    margin-left: auto;
+    /* Alinear el botón a la derecha usando margin-left: auto */
+
+}
+
+.form .inputBox button:hover {
+    transform: scale(1.1);
+}
+
+.form .inputBox button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 200px;
+    /* Ajusta según sea necesario para cubrir el área deseada */
+    width: 20px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: skewX(45deg);
+    transition: 0.5s;
+}
+
+.form .inputBox button:hover::before {
+    left: -80%;
+    /* Cambiado para mover el pseudo-elemento fuera del botón en el estado normal */
+}
+
+
+/* Estilo para la barra de desplazamiento */
+::-webkit-scrollbar {
+    margin-left: 1rem;
+    width: 10px;
+    /* Ancho de la barra de desplazamiento */
+}
+
+/* Estilo para el "thumb" (la parte móvil de la barra) */
+::-webkit-scrollbar-thumb {
+    background-color: rgba(3, 74, 74, 0.5);
+    /* Color de fondo del "thumb" */
+    border-radius: 5px;
+    /* Bordes redondeados */
+}
+
+/* Estilo para el "track" (la pista de la barra de desplazamiento) */
+::-webkit-scrollbar-track {
+    background-color: transparent;
+    /* Color de fondo del "track" */
+}

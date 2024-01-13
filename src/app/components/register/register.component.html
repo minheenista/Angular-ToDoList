@@ -1,0 +1,78 @@
+<section>
+  <div class="color"></div>
+  <div class="color"></div>
+  <div class="color"></div>
+  <div class="box">
+    <div class="square" style="--i: 0"></div>
+    <div class="square" style="--i: 1"></div>
+    <div class="square" style="--i: 2"></div>
+    <div class="square" style="--i: 3"></div>
+    <div class="square" style="--i: 4"></div>
+    <div class="container">
+      <div class="form">
+        <h2>Registro</h2>
+        <form
+          id="registerForm"
+          [formGroup]="formRegister"
+          (ngSubmit)="register()"
+        >
+          <div class="inputBox">
+            <input
+              formControlName="name"
+              type="text"
+              placeholder="Nombre"
+              id="name"
+              name="name"
+            />
+          </div>
+          <div class="inputBox">
+            <input
+              formControlName="lastname"
+              type="text"
+              placeholder="Apellido"
+              id="lastname"
+              name="lastname"
+            />
+          </div>
+          <div class="inputBox">
+            <input
+              formControlName="user"
+              type="text"
+              placeholder="Usuario"
+              id="username"
+              name="user"
+            />
+          </div>
+          <div class="inputBox">
+            <input
+              formControlName="email"
+              type="text"
+              placeholder="Correo Electrónico"
+              id="email"
+              name="email"
+            />
+          </div>
+          <div class="inputBox">
+            <input
+              formControlName="svpassword"
+              type="password"
+              placeholder="Contraseña"
+              id="svpassword"
+              name="svpassword"
+            />
+          </div>
+          <div class="inputBox">
+            <input type="submit" value="Registrar" />
+          </div>
+          <!-- <p class="forget">
+              Olvidaste tu contraseña ? <a href="#">Haz clic aqui</a>
+            </p> -->
+          <p class="forget">
+            Ya tienes una cuenta ?
+            <a (click)="navigateToLogin()">Inicia aquí</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

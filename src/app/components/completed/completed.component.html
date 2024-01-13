@@ -1,0 +1,129 @@
+<main>
+  <section class="glass">
+    <div class="dashboard">
+      <div class="user">
+        <img src="./../../../assets/logo.png" alt="" />
+        <h3>Hola</h3>
+      </div>
+      <div class="links">
+        <div class="link" (click)="navigateToHome()">
+          <span class="material-symbols-rounded mat-icon-custom-color">
+            list
+          </span>
+          <h2>Tareas</h2>
+        </div>
+        <div class="link active" (click)="navigateToCompleted()">
+          <span class="material-symbols-rounded mat-icon-custom-color">
+            done
+          </span>
+          <h2>Completadas</h2>
+        </div>
+        <div class="link logout" (click)="salir()">
+          <span class="material-symbols-rounded mat-icon-custom-color">
+            logout
+          </span>
+          <h2>Salir</h2>
+        </div>
+      </div>
+    </div>
+    <div class="games">
+      <div class="status">
+        <div class="title-and-button">
+          <h1>Tareas Completadas</h1>
+          <button
+            class="button"
+            aria-hidden="true"
+            id="openModalBtn"
+            (click)="abrirModal()"
+          >
+            + Agregar Tarea
+          </button>
+        </div>
+
+        <div class="line"></div>
+      </div>
+      <div
+        class="cards"
+        *ngIf="tareasCompletadas && tareasCompletadas.length > 0"
+      >
+        <app-task-completed
+          *ngFor="let tarea of tareasCompletadas"
+          [task]="tarea"
+        ></app-task-completed>
+      </div>
+
+      <div
+        class="mensaje-no-tareas"
+        *ngIf="tareasCompletadas && tareasCompletadas.length === 0"
+      >
+        <h2>No hay tareas completadas >:(</h2>
+      </div>
+    </div>
+
+    <!-- modal crear tarea -->
+    <div id="modalCrearTarea" class="modal">
+      <div class="modal-content">
+        <h2>Agregar Nueva Tarea</h2>
+        <div class="form">
+          <form
+            [formGroup]="formAddTask"
+            (ngSubmit)="addTask()"
+            id="formCrearTarea"
+          >
+            <div class="inputBox">
+              <h4>Titulo de la tarea</h4>
+              <input
+                type="text"
+                formControlName="title"
+                placeholder="Titulo"
+                id="titleTask"
+                name="title"
+              />
+              <!-- <div
+            *ngIf="
+              form.get('titleTask')?.hasError('required') &&
+              form.get('titleTask')?.touched
+            "
+            class="text-danger"
+          >
+            El campo nombre es <strong>requerido</strong>
+          </div> -->
+            </div>
+            <div class="inputBox text">
+              <h4>Descripcion de la tarea</h4>
+              <input
+                type="text"
+                formControlName="description"
+                placeholder="Descripcion"
+                id="descriptionTask"
+                name="description"
+              />
+              <!-- <div
+            *ngIf="
+              form.get('descriptionTask')?.hasError('required') &&
+              form.get('descriptionTask')?.touched
+            "
+            class="text-danger"
+          >
+            El campo nombre es <strong>requerido</strong>
+          </div> -->
+            </div>
+
+            <div class="inputBox buttons">
+              <button
+                class="buttonCerrar"
+                aria-hidden="true"
+                (click)="cerrarModal($event)"
+              >
+                Cancelar
+              </button>
+              <input type="submit" value="Crear" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<div class="circle1"></div>
+<div class="circle2"></div>
