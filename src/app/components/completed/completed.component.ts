@@ -19,6 +19,7 @@ export class CompletedComponent {
   token: string = '';
   tareas: any;
   tareasCompletadas: any;
+  errorAddTask: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -57,14 +58,17 @@ export class CompletedComponent {
             this.cerrarModal(event);
             alert('Tarea agregada con exito');
             this.navigateToHome();
+            this.errorAddTask = '';
           },
           error: (e) => {
             console.log('Error al registrar tarea', e);
-            alert(e.error.mensaje);
+            //alert(e.error.mensaje);
+            this.errorAddTask = e.error.mensaje;
           },
         });
     } else {
-      alert('Rellena todos los campos');
+      this.errorAddTask = 'Rellena todos los campos';
+      //alert('Rellena todos los campos');
     }
   }
 
@@ -118,6 +122,9 @@ export class CompletedComponent {
 
     const modal = this.elRef.nativeElement.querySelector('#modalCrearTarea');
     modal.style.display = 'none';
+
+    this.errorAddTask = '';
+    this.formAddTask.reset();
   }
 
   /* RUTAS */

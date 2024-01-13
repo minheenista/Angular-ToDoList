@@ -79,18 +79,18 @@
                 id="titleTask"
                 name="title"
               />
-              <!-- <div
-            *ngIf="
-              form.get('titleTask')?.hasError('required') &&
-              form.get('titleTask')?.touched
-            "
-            class="text-danger"
-          >
-            El campo nombre es <strong>requerido</strong>
-          </div> -->
+              <div
+                *ngIf="
+                  formAddTask.get('title')?.hasError('required') &&
+                  formAddTask.get('title')?.touched
+                "
+                class="error-message"
+              >
+                El campo Titulo es <strong>requerido</strong>
+              </div>
             </div>
             <div class="inputBox text">
-              <h4>Descripcion de la tarea</h4>
+              <h4>Descripción de la tarea</h4>
               <input
                 type="text"
                 formControlName="description"
@@ -98,18 +98,21 @@
                 id="descriptionTask"
                 name="description"
               />
-              <!-- <div
-            *ngIf="
-              form.get('descriptionTask')?.hasError('required') &&
-              form.get('descriptionTask')?.touched
-            "
-            class="text-danger"
-          >
-            El campo nombre es <strong>requerido</strong>
-          </div> -->
+              <div
+                *ngIf="
+                  formAddTask.get('description')?.hasError('required') &&
+                  formAddTask.get('description')?.touched
+                "
+                class="error-message"
+              >
+                El campo Descripción es <strong>requerido</strong>
+              </div>
             </div>
 
             <div class="inputBox buttons">
+              <span class="error-message" *ngIf="errorAddTask"
+                ><strong>{{ errorAddTask }}</strong></span
+              >
               <button
                 class="buttonCerrar"
                 aria-hidden="true"

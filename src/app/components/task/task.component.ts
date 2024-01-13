@@ -16,6 +16,7 @@ export class TaskComponent {
   tareas: any;
   formUpdateTask: FormGroup;
   tarea: any;
+  errorUpdateTask: string = '';
 
   constructor(
     private elRef: ElementRef,
@@ -27,13 +28,6 @@ export class TaskComponent {
       title: ['', Validators.required],
       description: ['', Validators.required],
     });
-  }
-
-  cerrarModal() {
-    const modal = document.getElementById('myModal');
-    if (modal) {
-      modal.style.display = 'none';
-    }
   }
 
   abrirModalEditar(taskId: string) {
@@ -63,6 +57,8 @@ export class TaskComponent {
 
     const modal = this.elRef.nativeElement.querySelector('#modalEditarTarea');
     modal.style.display = 'none';
+    this.formUpdateTask.reset();
+    this.errorUpdateTask = '';
   }
 
   abrirModalEliminar(taskId: string) {
@@ -108,13 +104,16 @@ export class TaskComponent {
             this.cerrarModalEditar();
             alert('Tarea actualizada con exito');
             window.location.reload();
+            this.errorUpdateTask = '';
           },
           error: (e) => {
-            alert(e.error.mensaje);
+            //alert(e.error.mensaje);
+            this.errorUpdateTask = e.error.mensaje;
           },
         });
     } else {
-      alert('Rellena todos los campos');
+      this.errorUpdateTask = 'Rellena todos los campos';
+      //alert('Rellena todos los campos');
     }
   }
 

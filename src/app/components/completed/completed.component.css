@@ -42,6 +42,17 @@ main {
 
 }
 
+.error-message {
+    color: red;
+    margin-top: 6px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+span .error-message {
+    margin-top: 2rem;
+}
+
 .glass {
     margin: 50px;
     background: white;

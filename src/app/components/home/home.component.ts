@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   token: string = '';
   tareas: any;
   tareasPendientes: any;
+  errorAddTask: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -54,14 +55,17 @@ export class HomeComponent implements OnInit {
             this.getUserTasks();
             this.cerrarModal(event);
             alert('Tarea agregada con exito');
+            this.errorAddTask = '';
           },
           error: (e) => {
             console.log('Error al registrar tarea', e);
-            alert(e.error.mensaje);
+            //alert(e.error.mensaje);
+            this.errorAddTask = e.error.mensaje;
           },
         });
     } else {
-      alert('Rellena todos los campos');
+      this.errorAddTask = 'Rellena todos los campos';
+      //alert('Rellena todos los campos');
     }
   }
 
@@ -115,6 +119,8 @@ export class HomeComponent implements OnInit {
 
     const modal = this.elRef.nativeElement.querySelector('#modalCrearTarea');
     modal.style.display = 'none';
+    this.errorAddTask = '';
+    this.formAddTask.reset();
   }
 
   /* RUTAS */

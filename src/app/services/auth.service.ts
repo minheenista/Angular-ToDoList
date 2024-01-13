@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { Respuesta, Usuario } from '../models/login.model';
+import { UserLogin } from '../models/userLogin.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,9 +14,8 @@ export class AuthService {
 
   constructor(private http: HttpClient, private cookieService: CookieService) {}
 
-  login(email: string, password: string): Observable<Respuesta> {
-    const body = { email, password };
-    return this.http.post<Respuesta>(`${this.urlApi}/login`, body);
+  login(userLogin: UserLogin): Observable<Respuesta> {
+    return this.http.post<Respuesta>(`${this.urlApi}/login`, userLogin);
   }
 
   setToken(token: string): void {

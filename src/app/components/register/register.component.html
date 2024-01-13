@@ -24,6 +24,15 @@
               id="name"
               name="name"
             />
+            <div
+              *ngIf="
+                formRegister.get('name')?.hasError('required') &&
+                formRegister.get('name')?.touched
+              "
+              class="error-message"
+            >
+              El campo Nombre es <strong>requerido</strong>
+            </div>
           </div>
           <div class="inputBox">
             <input
@@ -33,6 +42,15 @@
               id="lastname"
               name="lastname"
             />
+            <div
+              *ngIf="
+                formRegister.get('lastname')?.hasError('required') &&
+                formRegister.get('lastname')?.touched
+              "
+              class="error-message"
+            >
+              El campo Apellido es <strong>requerido</strong>
+            </div>
           </div>
           <div class="inputBox">
             <input
@@ -42,6 +60,15 @@
               id="username"
               name="user"
             />
+            <div
+              *ngIf="
+                formRegister.get('user')?.hasError('required') &&
+                formRegister.get('user')?.touched
+              "
+              class="error-message"
+            >
+              El campo Usuario es <strong>requerido</strong>
+            </div>
           </div>
           <div class="inputBox">
             <input
@@ -51,6 +78,15 @@
               id="email"
               name="email"
             />
+            <div
+              *ngIf="
+                formRegister.get('email')?.hasError('required') &&
+                formRegister.get('email')?.touched
+              "
+              class="error-message"
+            >
+              El campo Correo Electrónico es <strong>requerido</strong>
+            </div>
           </div>
           <div class="inputBox">
             <input
@@ -60,13 +96,24 @@
               id="svpassword"
               name="svpassword"
             />
+            <div
+              *ngIf="
+                formRegister.get('svpassword')?.hasError('required') &&
+                formRegister.get('svpassword')?.touched
+              "
+              class="error-message"
+            >
+              El campo Contraseña es <strong>requerido</strong>
+            </div>
           </div>
+
           <div class="inputBox">
             <input type="submit" value="Registrar" />
           </div>
-          <!-- <p class="forget">
-              Olvidaste tu contraseña ? <a href="#">Haz clic aqui</a>
-            </p> -->
+
+          <span class="error-message" *ngIf="errorRegister"
+            ><strong>{{ errorRegister }}</strong></span
+          >
           <p class="forget">
             Ya tienes una cuenta ?
             <a (click)="navigateToLogin()">Inicia aquí</a>

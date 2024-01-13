@@ -1,12 +1,3 @@
-/* ============ FORMATO IMAGENES ================ */
-.imgTarea {
-    height: 3.5rem;
-    width: 3.5rem;
-    object-fit: cover;
-    border-radius: 1rem;
-}
-
-
 /* ========== FORMATO TARJETA ================== */
 
 .mat-icon-custom-color {
@@ -70,7 +61,6 @@ del {
 
 .card button.completed:disabled {
     background: linear-gradient(to right top, #67df65, #6ceb6e);
-    text-decoration: line-through;
 }
 
 .card button:disabled:hover {
@@ -86,7 +76,6 @@ del {
     position: absolute;
     top: 0;
     left: 150px;
-    /* Ajusta según sea necesario para cubrir el área deseada */
     width: 20px;
     height: 100%;
     background: rgba(255, 255, 255, 0.5);
@@ -96,60 +85,26 @@ del {
 
 .card button:hover::before {
     left: -80%;
-    /* Cambiado para mover el pseudo-elemento fuera del botón en el estado normal */
 }
 
 .card .delete-button {
     background: linear-gradient(to right top, #ff6b6b, #ff8e8e);
-    /* Cambia a tu color deseado */
     padding: 0.5rem;
-    /* Ajusta según sea necesario */
     margin-left: 10px;
 }
 
 .card .delete-button span {
     color: white;
-    /* Cambia a tu color deseado para el ícono */
 }
 
 .card .edit-button {
     background: linear-gradient(to right top, #FDCD3E, #FFC009);
-    /* Cambia a tu color deseado */
     padding: 0.5rem;
-    /* Ajusta según sea necesario */
 }
 
 .card .edit-button span {
     color: white;
-    /* Cambia a tu color deseado para el ícono */
 }
-
-
-
-/* ============ ESTILOS MODAL IMAGEN COMPLETA =============== */
-#myModal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    padding-top: 50px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.5);
-    transition: all 0.3s ease;
-    border-radius: 2rem;
-}
-
-#myModal img {
-    margin: auto;
-    display: block;
-    max-width: 80%;
-    max-height: 80%;
-}
-
 
 /* ============== MODAL EDITAR TAREA ================== */
 
@@ -157,14 +112,11 @@ del {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* Agrega espacio entre los elementos */
     width: 100%;
 }
 
-
 .modal {
     display: none;
-    /* Oculta el modal por defecto */
     position: fixed;
     top: 0;
     left: 0;
@@ -174,7 +126,6 @@ del {
     z-index: 1000;
 
     background-color: rgba(0, 0, 0, 0.7);
-    /* Fondo oscuro semitransparente */
 }
 
 .modal-content {
@@ -233,7 +184,6 @@ del {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    /* Agrega espacio entre los elementos */
 }
 
 .form .inputBox.text {
@@ -290,25 +240,21 @@ del {
     position: relative;
     top: 0;
     left: 20%;
-    /* Ajustado para centrar el pseudo-elemento horizontalmente en el botón */
     width: 20px;
     height: 100%;
     background: rgba(255, 255, 255, 0.5);
     transform: skewX(45deg) translateX(-50%);
-    /* Ajustado para centrar el pseudo-elemento en el botón */
     transition: 0.5s;
 }
 
 .form .inputBox input[type="submit"]:hover::before {
     left: -80%;
-    /* Ajustado para mover el pseudo-elemento fuera del botón en el estado normal */
 }
 
 /* button cerrar */
 .form .inputBox button,
 .modal-content-sm .inputBox .buttonCerrar {
     position: relative;
-    /* Añadido para que el pseudo-elemento sea relativo a este botón */
     background: linear-gradient(to right top, #a4e1d6, #b3eaf3);
     border: none;
     border-radius: 1rem;
@@ -322,8 +268,6 @@ del {
     min-width: fit-content;
     min-height: 3rem;
     margin-left: auto;
-    /* Alinear el botón a la derecha usando margin-left: auto */
-
 }
 
 .form .inputBox button:hover {
@@ -335,7 +279,6 @@ del {
     position: absolute;
     top: 0;
     left: 200px;
-    /* Ajusta según sea necesario para cubrir el área deseada */
     width: 20px;
     height: 100%;
     background: rgba(255, 255, 255, 0.5);
@@ -345,17 +288,12 @@ del {
 
 .form .inputBox button:hover::before {
     left: -80%;
-    /* Cambiado para mover el pseudo-elemento fuera del botón en el estado normal */
 }
-
-
-
 
 /* ============== MODAL ELIMINAR ================== */
 
 .modal-sm {
     display: none;
-    /* Oculta el modal por defecto */
     position: fixed;
     top: 0;
     left: 0;
@@ -364,7 +302,6 @@ del {
     border-radius: 2rem;
     z-index: 1000;
     background-color: rgba(0, 0, 0, 0.7);
-    /* Fondo oscuro semitransparente */
 }
 
 .modal-content-sm {
@@ -387,10 +324,9 @@ del {
     color: #f00;
 }
 
-/* ============== BUTTON ELIMINAR */
+/* ============== BUTTON ELIMINAR ============= */
 .modal-content-sm button {
     position: relative;
-    /* Añadido para que el pseudo-elemento sea relativo a este botón */
     background: linear-gradient(to right top, #65dfc9, #6cdbeb);
     border: none;
     border-radius: 1rem;
@@ -406,15 +342,11 @@ del {
     min-height: 3rem;
     margin-top: 1rem;
     margin-left: auto;
-    /* Alinear el botón a la derecha usando margin-left: auto */
-
 }
 
 .modal-content-sm .button-delete {
     background: linear-gradient(to right top, #ff6b6b, #ff8e8e);
-    /* Cambia a tu color deseado */
     padding: 0.7rem;
-    /* Ajusta según sea necesario */
     margin-right: 0.5rem;
     margin-left: 10px;
 }
@@ -428,7 +360,6 @@ del {
     position: absolute;
     top: 0;
     left: 185px;
-    /* Ajusta según sea necesario para cubrir el área deseada */
     width: 20px;
     height: 100%;
     background: rgba(255, 255, 255, 0.5);
@@ -438,7 +369,6 @@ del {
 
 .modal-content-sm button:hover::before {
     left: -80%;
-    /* Cambiado para mover el pseudo-elemento fuera del botón en el estado normal */
 }
 
 .modal-content-sm .inputBox {

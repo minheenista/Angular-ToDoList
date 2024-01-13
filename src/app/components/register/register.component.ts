@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class RegisterComponent implements OnInit {
   users: Usuario[] = [];
   formRegister: FormGroup;
+  errorRegister: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -36,13 +37,15 @@ export class RegisterComponent implements OnInit {
           this.formRegister.reset();
           alert('Usuario registrado con exito');
           this.navigateToLogin();
+          this.errorRegister = '';
         },
         error: (e) => {
           alert(e.error.mensaje);
         },
       });
     } else {
-      alert('Rellena todos los campos.');
+      //alert('Rellena todos los campos.');
+      this.errorRegister = 'Rellena todos los campos.';
     }
   }
 

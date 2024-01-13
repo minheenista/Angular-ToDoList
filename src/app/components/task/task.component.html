@@ -36,9 +36,18 @@
             id="titleTaskUpdate"
             name="title"
           />
+          <div
+            *ngIf="
+              formUpdateTask.get('title')?.hasError('required') &&
+              formUpdateTask.get('title')?.touched
+            "
+            class="error-message"
+          >
+            El campo Titulo es <strong>requerido</strong>
+          </div>
         </div>
         <div class="inputBox">
-          <h4>Descripcion de la tarea</h4>
+          <h4>Descripción de la tarea</h4>
           <input
             type="text"
             formControlName="description"
@@ -46,9 +55,21 @@
             id="descriptionTaskUpdate"
             name="description"
           />
+          <div
+            *ngIf="
+              formUpdateTask.get('description')?.hasError('required') &&
+              formUpdateTask.get('description')?.touched
+            "
+            class="error-message"
+          >
+            El campo Descripción es <strong>requerido</strong>
+          </div>
         </div>
 
         <div class="inputBox buttons">
+          <span class="error-message" *ngIf="errorUpdateTask"
+            ><strong>{{ errorUpdateTask }}</strong></span
+          >
           <button
             class="buttonCerrar"
             aria-hidden="true"
