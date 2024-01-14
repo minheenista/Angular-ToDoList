@@ -9,7 +9,7 @@ import { RespuestaTareas } from '../models/tareas.model';
   providedIn: 'root',
 })
 export class TasksService {
-  private urlApi = 'https://proyectofinal-cbfg.onrender.com';
+  private urlApi = 'http://localhost:3000';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 

@@ -9,7 +9,7 @@ import { UserLogin } from '../models/userLogin.model';
   providedIn: 'root',
 })
 export class AuthService {
-  private urlApi = ' https://proyectofinal-cbfg.onrender.com/users';
+  private urlApi = ' http://localhost:3000/users';
   private tokenKey = 'jwt';
 
   constructor(private http: HttpClient, private cookieService: CookieService) {}
