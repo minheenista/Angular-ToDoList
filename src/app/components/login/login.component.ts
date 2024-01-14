@@ -32,16 +32,13 @@ export class LoginComponent {
           if (response.estado === 1) {
             this.authService.setToken(response.token);
             this.router.navigate(['/home']);
-            alert('inicion sesiada.');
             this.errorLogin = '';
           } else {
             console.error('Error: correo o contraseña incorrectos');
-            alert('Error: correo o contraseña incorrectos');
             this.errorLogin = 'Error: correo o contraseña incorrectos';
           }
         },
         (error) => {
-          //alert(error.error.mensaje);
           this.errorLogin = error.error.mensaje;
         },
         () => {
@@ -52,7 +49,6 @@ export class LoginComponent {
       );
     } else {
       this.errorLogin = 'Rellena todos los campos.';
-      //alert('Rellena todos los campos.');
     }
   }
 

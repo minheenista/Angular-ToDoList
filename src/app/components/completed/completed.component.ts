@@ -5,11 +5,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TasksService } from 'src/app/services/tasks.service';
 import { Task } from 'src/app/models/task.model';
 import { Usuario } from 'src/app/models/usuario';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-completed',
   templateUrl: './completed.component.html',
   styleUrls: ['./completed.component.css'],
+  providers: [MessageService],
 })
 export class CompletedComponent {
   formAddTask: FormGroup;
@@ -26,7 +28,8 @@ export class CompletedComponent {
     private elRef: ElementRef,
     private router: Router,
     private taskService: TasksService,
-    private authService: AuthService
+    private authService: AuthService,
+    private messageService: MessageService
   ) {
     this.formAddTask = this.fb.group({
       title: ['', Validators.required],
@@ -43,6 +46,22 @@ export class CompletedComponent {
     this.getCompletedTasks();
   }
 
+  async showSuccess(mensaje: string) {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Éxito',
+      detail: mensaje,
+    });
+  }
+
+  showError(e: string) {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: e,
+    });
+  }
+
   setToken() {
     this.token = this.authService.getToken() || '';
   }
@@ -52,23 +71,23 @@ export class CompletedComponent {
       this.taskService
         .createTask(this.formAddTask.value, this.token)
         .subscribe({
-          next: (v) => {
+          next: async (v) => {
             this.formAddTask.reset();
             this.getUserTasks();
             this.cerrarModal(event);
-            alert('Tarea agregada con exito');
+            await this.showSuccess(v.mensaje);
+
             this.navigateToHome();
             this.errorAddTask = '';
           },
           error: (e) => {
             console.log('Error al registrar tarea', e);
-            //alert(e.error.mensaje);
             this.errorAddTask = e.error.mensaje;
+            this.showError(e.error.mensaje);
           },
         });
     } else {
       this.errorAddTask = 'Rellena todos los campos';
-      //alert('Rellena todos los campos');
     }
   }
 
@@ -84,7 +103,7 @@ export class CompletedComponent {
       },
       error: (e) => {
         console.error('Error:', e);
-        alert(e);
+        this.showError(e.error.mensaje);
       },
     });
   }
@@ -104,7 +123,7 @@ export class CompletedComponent {
       },
       error: (e) => {
         console.error('Error:', e);
-        alert(e);
+        this.showError(e.error.mensaje);
       },
     });
   }
@@ -140,6 +159,5 @@ export class CompletedComponent {
   salir() {
     this.authService.logout();
     this.router.navigate(['']);
-    alert('Sesión cerrada correctamente.');
   }
 }

@@ -24,6 +24,7 @@ p {
     overflow: hidden;
     align-items: center;
     justify-items: flex-start;
+        max-width: 800px;
 }
 
 .card-info {
@@ -31,7 +32,17 @@ p {
     margin-left: 0.5rem;
     flex-direction: column;
     justify-content: flex-start;
+    max-width: 500px;
+    flex-wrap: wrap;
+    word-wrap: break-word;
 
+}
+
+.card-actions{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-left: auto;
 }
 
 .card button {
@@ -91,6 +102,7 @@ del {
 .card .delete-button {
     background: linear-gradient(to right top, #ff6b6b, #ff8e8e);
     padding: 0.5rem;
+    align-self: flex-end;
     margin-left: 10px;
 }
 

@@ -3,11 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Task } from 'src/app/models/task.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { TasksService } from 'src/app/services/tasks.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-task-completed',
   templateUrl: './task-completed.component.html',
   styleUrls: ['./task-completed.component.css'],
+  providers: [MessageService],
 })
 export class TaskCompletedComponent {
   @Input() task!: Task;
@@ -21,48 +23,13 @@ export class TaskCompletedComponent {
     private elRef: ElementRef,
     private fb: FormBuilder,
     private taskService: TasksService,
-    private authService: AuthService
+    private authService: AuthService,
+    private messageService: MessageService
   ) {
     this.formUpdateTask = this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
     });
-  }
-
-  cerrarModal() {
-    const modal = document.getElementById('myModal');
-    if (modal) {
-      modal.style.display = 'none';
-    }
-  }
-
-  abrirModalEditar(taskId: string) {
-    const openModalBtn = this.elRef.nativeElement.querySelector(
-      '#openModalEditarBtn'
-    );
-    const modal = this.elRef.nativeElement.querySelector('#modalEditarTarea');
-
-    modal.style.display = 'block';
-    this.setToken();
-    this.taskService.getTaskById(taskId, this.token).subscribe({
-      next: (v) => {
-        this.tarea = v.data;
-      },
-      error: (e) => {
-        alert(e.error.mensaje);
-      },
-    });
-    this.formUpdateTask.setValue({
-      title: this.task.title,
-      description: this.task.description,
-    });
-  }
-
-  cerrarModalEditar(event?: Event) {
-    event?.preventDefault();
-
-    const modal = this.elRef.nativeElement.querySelector('#modalEditarTarea');
-    modal.style.display = 'none';
   }
 
   abrirModalEliminar(taskId: string) {
@@ -80,53 +47,50 @@ export class TaskCompletedComponent {
   }
 
   async setToken() {
-    this.token = this.authService.getToken() || ''; // Asigna el token al objeto nuevoUsuario
+    this.token = this.authService.getToken() || '';
+  }
+
+  async showSuccess(mensaje: string) {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Éxito',
+      detail: mensaje,
+      life: 3000,
+    });
+  }
+
+  async showError(e: string) {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: e,
+      life: 3000,
+    });
   }
 
   eliminarTarea(taskId: string) {
     this.setToken();
     this.taskService.deleteTask(taskId, this.token).subscribe({
-      next: (v) => {
-        alert('Tarea eliminada con exito');
+      next: async (v) => {
+        await this.showSuccess(v.mensaje);
         window.location.reload();
       },
       error: (e) => {
-        alert(e.error.mensaje);
+        this.showError(e.error.mensaje);
       },
     });
     this.cerrarModalEliminar();
   }
 
-  updateTask(taskId: string) {
-    if (this.formUpdateTask.valid) {
-      this.setToken();
-      this.taskService
-        .updateTask(taskId, this.formUpdateTask.value, this.token)
-        .subscribe({
-          next: (v) => {
-            this.formUpdateTask.reset();
-            this.cerrarModalEditar();
-            alert('Tarea actualizada con exito');
-            window.location.reload();
-          },
-          error: (e) => {
-            alert(e.error.mensaje);
-          },
-        });
-    } else {
-      alert('Rellena todos los campos');
-    }
-  }
-
   async completeTask(taskId: string) {
     await this.setToken();
     this.taskService.completeTask(taskId, this.token).subscribe({
-      next: (v) => {
-        alert('Tarea completada con exito');
+      next: async (v) => {
+        await this.showSuccess(v.mensaje);
         window.location.reload();
       },
       error: (e) => {
-        alert(e.error.mensaje);
+        this.showError(e.error.mensaje);
       },
     });
   }
