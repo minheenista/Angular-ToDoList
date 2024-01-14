@@ -1,20 +1,24 @@
+<p-toast></p-toast>
+
 <div class="card">
   <div class="card-info">
     <h2>{{ task.title }}</h2>
     <p>{{ task.description }}</p>
   </div>
-  <button
-    class="button-sm delete-button"
-    (click)="abrirModalEliminar(task._id)"
-  >
-    <span class="material-symbols-rounded mat-icon-custom-color">delete</span>
-  </button>
-  <button class="button-sm edit-button" (click)="abrirModalEditar(task._id)">
-    <span class="material-symbols-rounded mat-icon-custom-color">edit</span>
-  </button>
-  <button class="button" aria-hidden="true" (click)="completeTask(task._id)">
-    Completada
-  </button>
+  <div class="card-actions">
+    <button
+      class="button-sm delete-button"
+      (click)="abrirModalEliminar(task._id)"
+    >
+      <span class="material-symbols-rounded mat-icon-custom-color">delete</span>
+    </button>
+    <button class="button-sm edit-button" (click)="abrirModalEditar(task._id)">
+      <span class="material-symbols-rounded mat-icon-custom-color">edit</span>
+    </button>
+    <button class="button" aria-hidden="true" (click)="completeTask(task._id)">
+      Completada
+    </button>
+  </div>
 </div>
 
 <!-- modal editar tarea -->

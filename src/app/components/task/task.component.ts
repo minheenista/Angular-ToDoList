@@ -3,11 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Task } from 'src/app/models/task.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { TasksService } from 'src/app/services/tasks.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.css'],
+  providers: [MessageService],
 })
 export class TaskComponent {
   @Input() task!: Task;
@@ -22,11 +24,30 @@ export class TaskComponent {
     private elRef: ElementRef,
     private fb: FormBuilder,
     private taskService: TasksService,
-    private authService: AuthService
+    private authService: AuthService,
+    private messageService: MessageService
   ) {
     this.formUpdateTask = this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
+    });
+  }
+
+  async showSuccess(mensaje: string) {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Éxito',
+      detail: mensaje,
+      life: 3000,
+    });
+  }
+
+  async showError(e: string) {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: e,
+      life: 3000,
     });
   }
 
@@ -43,7 +64,7 @@ export class TaskComponent {
         this.tarea = v.data;
       },
       error: (e) => {
-        alert(e.error.mensaje);
+        this.showError(e.error.mensaje);
       },
     });
     this.formUpdateTask.setValue({
@@ -82,12 +103,12 @@ export class TaskComponent {
   eliminarTarea(taskId: string) {
     this.setToken();
     this.taskService.deleteTask(taskId, this.token).subscribe({
-      next: (v) => {
-        alert('Tarea eliminada con exito');
+      next: async (v) => {
+        await this.showSuccess(v.mensaje);
         window.location.reload();
       },
-      error: (e) => {
-        alert(e.error.mensaje);
+      error: async (e) => {
+        await this.showError(e.error.mensaje);
       },
     });
     this.cerrarModalEliminar();
@@ -99,33 +120,32 @@ export class TaskComponent {
       this.taskService
         .updateTask(taskId, this.formUpdateTask.value, this.token)
         .subscribe({
-          next: (v) => {
+          next: async (v) => {
             this.formUpdateTask.reset();
             this.cerrarModalEditar();
-            alert('Tarea actualizada con exito');
+            await this.showSuccess(v.mensaje);
             window.location.reload();
             this.errorUpdateTask = '';
           },
           error: (e) => {
-            //alert(e.error.mensaje);
+            this.showError(e.error.mensaje);
             this.errorUpdateTask = e.error.mensaje;
           },
         });
     } else {
       this.errorUpdateTask = 'Rellena todos los campos';
-      //alert('Rellena todos los campos');
     }
   }
 
   async completeTask(taskId: string) {
     await this.setToken();
     this.taskService.completeTask(taskId, this.token).subscribe({
-      next: (v) => {
-        alert('Tarea completada con exito');
+      next: async (v) => {
+        await this.showSuccess(v.mensaje);
         window.location.reload();
       },
       error: (e) => {
-        alert(e.error.mensaje);
+        this.showError(e.error.mensaje);
       },
     });
   }

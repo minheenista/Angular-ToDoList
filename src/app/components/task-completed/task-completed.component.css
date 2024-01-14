@@ -24,6 +24,7 @@ p {
     overflow: hidden;
     align-items: center;
     justify-items: flex-start;
+    max-width: 900px;
 }
 
 .card-info {
@@ -32,6 +33,13 @@ p {
     flex-direction: column;
     justify-content: flex-start;
 
+}
+
+.card-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-left: auto;
 }
 
 .card button {
